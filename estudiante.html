@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Necesito un tutor — Mi Tutor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="logo"><span class="mark">MT</span> Mi Tutor</a>
+    <nav class="nav-links">
+      <button class="link-back" id="nav-mis-tutorias" style="font-weight:600;">Mis tutorías</button>
+      <a href="tutor.html">Quiero ser tutor</a>
+    </nav>
+  </div>
+</header>
+
+<div class="flow-header">
+  <div class="container">
+    <div class="stepper" id="stepper"></div>
+    <div class="back-row">
+      <button class="link-back" id="btn-atras">← Atrás</button>
+    </div>
+  </div>
+</div>
+
+<main class="flow-main">
+  <div class="container">
+
+    <!-- 1. ÁREA -->
+    <section class="seccion" id="sec-area">
+      <h2>¿En qué área necesitas ayuda?</h2>
+      <p class="intro">Mi Tutor se enfoca en Ciencias Básicas. Elige el área para ver las asignaturas disponibles.</p>
+      <div class="grid grid-3" id="lista-areas"></div>
+    </section>
+
+    <!-- 2. ASIGNATURA -->
+    <section class="seccion" id="sec-asignatura">
+      <h2 id="asignatura-titulo">Elige la asignatura</h2>
+      <p class="intro">Selecciona la rama específica dentro del área elegida.</p>
+      <div class="chip-list" id="lista-asignaturas"></div>
+    </section>
+
+    <!-- 3. NECESIDAD -->
+    <section class="seccion" id="sec-necesidad">
+      <h2>¿Qué necesitas?</h2>
+      <p class="intro" id="necesidad-contexto"></p>
+      <div class="grid grid-4" id="lista-necesidades"></div>
+    </section>
+
+    <!-- 4. TEMA (solo si es refuerzo) -->
+    <section class="seccion" id="sec-tema">
+      <h2>¿Qué tema quieres reforzar?</h2>
+      <p class="intro" id="tema-contexto"></p>
+      <div class="chip-list" id="lista-temas"></div>
+      <div class="form-group" style="max-width:420px;margin-top:24px;">
+        <label for="tema-otro">Otro tema</label>
+        <span class="hint">Si no ves tu tema en la lista, escríbelo aquí.</span>
+        <div style="display:flex;gap:10px;">
+          <input type="text" id="tema-otro" placeholder="Ej: Repaso general antes del final" />
+          <button class="btn btn-secondary" id="btn-tema-otro">Continuar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. TUTORES -->
+    <section class="seccion" id="sec-tutores">
+      <h2>Tutores disponibles</h2>
+      <p class="intro" id="tutores-contexto"></p>
+      <div class="grid grid-2" id="lista-tutores" style="grid-template-columns:1fr;"></div>
+    </section>
+
+    <!-- 6. PERFIL DE TUTOR -->
+    <section class="seccion" id="sec-perfil">
+      <button class="link-back" id="btn-volver-lista" style="margin-bottom:18px;">← Volver a la lista de tutores</button>
+      <div class="perfil-header">
+        <div class="avatar avatar-lg" id="perfil-avatar"></div>
+        <div>
+          <h2 id="perfil-nombre" style="margin-bottom:4px;"></h2>
+          <div class="tutor-meta" id="perfil-universidad"></div>
+          <span class="badge badge-rating" id="perfil-rating"></span>
+        </div>
+      </div>
+      <p id="perfil-descripcion"></p>
+      <div class="perfil-datos-grid">
+        <div class="dato-box"><div class="label">Materias que domina</div><div class="valor" id="perfil-materias"></div></div>
+        <div class="dato-box"><div class="label">Experiencia</div><div class="valor" id="perfil-experiencia" style="font-weight:400;"></div></div>
+        <div class="dato-box"><div class="label">Tutorías realizadas</div><div class="valor" id="perfil-tutorias"></div></div>
+        <div class="dato-box"><div class="label">Precio</div><div class="valor" id="perfil-precio"></div></div>
+        <div class="dato-box"><div class="label">Modalidad</div><div class="valor" id="perfil-modalidad"></div></div>
+        <div class="dato-box"><div class="label">Horarios disponibles</div><div class="valor" id="perfil-horarios" style="font-weight:400;"></div></div>
+      </div>
+      <button class="btn btn-primary" id="btn-solicitar">Solicitar tutoría</button>
+    </section>
+
+    <!-- 7. SOLICITUD -->
+    <section class="seccion" id="sec-solicitud">
+      <h2>Detalles de tu solicitud</h2>
+      <p class="intro">Cuéntale a <strong id="solicitud-tutor-nombre"></strong> qué necesitas y cuándo.</p>
+      <form id="form-solicitud" style="max-width:620px;">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="sol-fecha">Fecha</label>
+            <input type="date" id="sol-fecha" required />
+          </div>
+          <div class="form-group">
+            <label for="sol-hora">Hora</label>
+            <input type="time" id="sol-hora" required />
+          </div>
+          <div class="form-group">
+            <label for="sol-duracion">Duración</label>
+            <select id="sol-duracion" required>
+              <option value="30">30 minutos</option>
+              <option value="60" selected>1 hora</option>
+              <option value="90">1 hora 30 minutos</option>
+              <option value="120">2 horas</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="sol-modalidad">Modalidad</label>
+            <select id="sol-modalidad" required></select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="sol-tema">Tema</label>
+          <input type="text" id="sol-tema" required />
+        </div>
+        <div class="form-group">
+          <label for="sol-descripcion">Descripción de lo que necesitas</label>
+          <span class="hint">Opcional, pero ayuda al tutor a preparar la sesión.</span>
+          <textarea id="sol-descripcion" placeholder="Ej: Tengo dudas con la regla de la cadena en derivadas..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Ver resumen</button>
+      </form>
+    </section>
+
+    <!-- 8. RESUMEN -->
+    <section class="seccion" id="sec-resumen">
+      <h2>Resumen de la solicitud</h2>
+      <p class="intro">Revisa los detalles antes de confirmar.</p>
+      <div class="summary-card" id="resumen-card"></div>
+      <div style="display:flex;gap:12px;margin-top:22px;">
+        <button class="btn btn-secondary" id="btn-editar-solicitud">Editar</button>
+        <button class="btn btn-primary" id="btn-confirmar-solicitud">Confirmar solicitud</button>
+      </div>
+    </section>
+
+    <!-- 9. CONFIRMACIÓN -->
+    <section class="seccion" id="sec-confirmacion">
+      <div class="confirm-box">
+        <div class="confirm-check">✓</div>
+        <h2>¡Solicitud enviada!</h2>
+        <p>Tu solicitud de tutoría ha sido registrada correctamente.</p>
+        <span class="badge badge-pendiente">🟡 Pendiente de confirmación del tutor</span>
+        <div style="text-align:left;margin-top:22px;">
+          <div class="summary-card" id="confirmacion-card" style="max-width:none;"></div>
+        </div>
+        <div style="display:flex;gap:12px;margin-top:24px;justify-content:center;flex-wrap:wrap;">
+          <button class="btn btn-primary" id="btn-ver-mis-tutorias">Ver mis tutorías</button>
+          <a class="btn btn-secondary" href="index.html">Volver al inicio</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. MIS TUTORÍAS -->
+    <section class="seccion" id="sec-mis-tutorias">
+      <h2>Mis tutorías</h2>
+      <p class="intro">Consulta el estado de tus solicitudes. Esta información se guarda en tu navegador (localStorage).</p>
+      <div class="tab-row" id="tabs-tutorias">
+        <button class="tab-btn activo" data-estado="todas">Todas</button>
+        <button class="tab-btn" data-estado="pendiente">Pendientes</button>
+        <button class="tab-btn" data-estado="confirmada">Confirmadas</button>
+        <button class="tab-btn" data-estado="finalizada">Finalizadas</button>
+      </div>
+      <div id="lista-mis-tutorias"></div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <span>Mi Tutor © <span data-anio></span> — Prototipo funcional, sin backend real.</span>
+  <button data-reset-demo>Reiniciar demo</button>
+</footer>
+
+<script src="js/app.js"></script>
+<script src="js/estudiante.js"></script>
+</body>
+</html>
